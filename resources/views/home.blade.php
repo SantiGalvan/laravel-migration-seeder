@@ -4,20 +4,42 @@
 
 @section('main-content')
     <main>
+      <section id="table-train">
         <div class="container">
-            <div class="row py-4">
-                <div class="col-3">
-                    <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="card-link">Card link</a>
-                          <a href="#" class="card-link">Another link</a>
-                        </div>
-                      </div>
-                </div>
-            </div>
+            <table class="table my-5">
+                <thead>
+                  <tr>
+                    <th scope="col">Codice</th>
+                    <th scope="col">In orario</th>
+                    <th scope="col">Stazione di partenza</th>
+                    <th scope="col">Stazione di arrivo</th>
+                    <th scope="col">Orario di partenza</th>
+                    <th scope="col">Orario di arrivo</th>
+                    <th scope="col">Compagnia</th>
+                    <th scope="col">N. Carrozze</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @forelse ($trains as $train)
+                  <tr>
+                    <th scope="row">{{$train->code}}</th>
+                    <td>{{$train->on_time}}</td>
+                    <td>{{$train->departure_station}}</td>
+                    <td>{{$train->arrival_station}}</td>
+                    <td>{{$train->departure_time}}</td>
+                    <td>{{$train->arrival_time}}</td>
+                    <td>{{$train->company}}</td>
+                    <td>{{$train->carriage_number}}</td>
+                  </tr>
+                  @empty
+                    <tr>
+                      <th scope="row" colspan="9">Non ci sono treni</th>
+                    </tr>
+                  @endforelse
+
+                </tbody>
+              </table>
         </div>
+      </section>
     </main>
 @endsection
